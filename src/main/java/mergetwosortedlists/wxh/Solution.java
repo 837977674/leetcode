@@ -12,8 +12,16 @@ class Solution {
         ListNode pointer=l3;
         while (l1!=null || l2!=null)
         {
-            if(l1==null) pointer.next=l2;
-            else if (l2==null) pointer.next=l1;
+            if(l1==null) {
+                pointer.val=l2.val;
+                pointer.next=l2.next;
+                break;
+            }
+            else if (l2==null) {
+                pointer.val=l1.val;
+                pointer.next=l1.next;
+                break;
+            }
             else if(l1.val<=l2.val)
             {
                 pointer.val=l1.val;
