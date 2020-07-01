@@ -8,7 +8,7 @@ public class TestVolatile {
             public void run(){
                 int i = 1;
                 while(!stop){
-                    // System.out.println(System.currentTimeMillis() + " 删了这行就死循环，你信不信？");
+                    System.out.println(System.currentTimeMillis() + " 删了这行就死循环，你信不信？");
                     i++;
                 }
                 System.out.println("Thread stop i="+ i);
