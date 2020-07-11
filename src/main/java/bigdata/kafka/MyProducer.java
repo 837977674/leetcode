@@ -25,7 +25,7 @@ public class MyProducer {
             System.out.println(value);
             ProducerRecord<String, String> msg = new ProducerRecord<>(topic, value);
             producer.send(msg);
-            Thread.sleep(333);
+            Thread.sleep(1000/3);
         }
         producer.close();
     }
