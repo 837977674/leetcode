@@ -18,13 +18,14 @@ public class MyProducer {
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
-        String topic = "mytopic";
+        String topic = "ztptest";
         Producer<String, String> producer = new KafkaProducer<>(props);
-        for (int i = 1; i <= 100; i++) {
-            String value = "value_" + i;
+        for (int i = 1; i <= 100000; i++) {
+            String value = "str" + i;
+            System.out.println(value);
             ProducerRecord<String, String> msg = new ProducerRecord<>(topic, value);
             producer.send(msg);
-            Thread.sleep(1000);
+            Thread.sleep(333);
         }
         producer.close();
     }
