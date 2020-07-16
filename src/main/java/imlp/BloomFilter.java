@@ -19,6 +19,8 @@ public class BloomFilter {
 
     public void add(String value) {
         for (SimpleHash f : func) {
+            int h1 = value.hashCode();
+            int h2 = f.hash(value);
             bits.set(f.hash(value), true);
         }
     }
@@ -45,12 +47,12 @@ public class BloomFilter {
         }
 
         public int hash(String value) {
-            int result = 0;
-            int len = value.length();
-            for (int i = 0; i < len; i++) {
-                result = seed * result + value.charAt(i);
+            int h = 0;
+            for (int i = 0; i < value.length(); i++) {
+                h = h * seed + value.charAt(i);
             }
-            return (cap - 1) & result;
+            int res = (cap - 1) & h;
+            return res;
         }
     }
 
@@ -68,7 +70,7 @@ public class BloomFilter {
             String s = strs.get(i);
             boolean bl = bf.contains(s);
             if(bl){
-                System.out.println(i+","+s);
+                System.out.println(i + "," + s + " is exists");
             }else{
                 bf.add(s);
             }
