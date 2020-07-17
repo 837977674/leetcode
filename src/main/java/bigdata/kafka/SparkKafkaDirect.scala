@@ -14,10 +14,10 @@ import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.zookeeper.data.Stat
 
 object SparkKafkaDirect {
-  private val zkHosts = "localhost:2181"
+  private val zkHosts = "cdh1:2181"
   private val logger = Logger.getLogger("SparkKafkaDirect")
   private val zkPath = "/kafka-direct-test"
-  private val topic = Set("ztptest")
+  private val topic = Set("ztp-test")
   private val HDFS_PATH="hdfs://node01:9000/kafka-ck"
 
   def main(args: Array[String]): Unit = {
@@ -26,7 +26,7 @@ object SparkKafkaDirect {
     val ssc = new StreamingContext(sc, Seconds(5))
 
     val kafkaParams = Map(
-      "metadata.broker.list" -> "localhost:9092",
+      "metadata.broker.list" -> "cdh2:9092,cdh3:9092,cdh4:9092",
       "group.id" -> "direct"
     )
 

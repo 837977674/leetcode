@@ -8,7 +8,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 
 object SparkKafkaReceiver {
 
-  private val topics = "ztptest"
+  private val topics = "ztp-test"
   private val HDFS_PATH = "hdfs://node01:9000/kafka-ck"
   private val numThreads = 1
 
@@ -25,8 +25,8 @@ object SparkKafkaReceiver {
     //ssc.checkpoint(HDFS_PATH)
 
     val kafkaParams = Map(
-      "metadata.broker.list" -> "localhost:9092",
-      "zookeeper.connect" -> "localhost:2181",
+      "metadata.broker.list" -> "cdh2:9092,cdh3:9092,cdh4:9092",
+      "zookeeper.connect" -> "cdh1:2181",
       "group.id" -> "receiver"
     )
 
