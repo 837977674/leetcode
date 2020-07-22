@@ -7,22 +7,27 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ReentrantLockFair {
     private static final Lock lock = new ReentrantLock();
     public static void main(String[] args) {
-        new Thread(() -> test(),"线程A").start();
-        new Thread(() -> test(),"线程B").start();
-        new Thread(() -> test(),"线程C").start();
-        new Thread(() -> test(),"线程D").start();
-        new Thread(() -> test(),"线程E").start();
+        new Thread(new ThreadDemo(),"线程A").start();
+        new Thread(new ThreadDemo(),"线程B").start();
+        new Thread(new ThreadDemo(),"线程C").start();
+        new Thread(new ThreadDemo(),"线程D").start();
+        new Thread(new ThreadDemo(),"线程E").start();
     }
-    public static void  test()  {
-        for(int i=0;i<2;i++) {
-            try {
-                lock.lock();
-                System.out.println(Thread.currentThread().getName()+"获取了锁");
-                TimeUnit.SECONDS.sleep(2);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }finally {
-                lock.unlock();
+    
+    static class ThreadDemo implements Runnable {
+
+        @Override
+        public void run() {
+            for(int i=0;i<2;i++) {
+                try {
+                    lock.lock();
+                    System.out.println(Thread.currentThread().getName()+"获取了锁");
+                    TimeUnit.SECONDS.sleep(2);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }finally {
+                    lock.unlock();
+                }
             }
         }
     }
