@@ -25,7 +25,7 @@ public class Solution {
                     // 判断是否可以出栈，如果最后一个字符和当前配对则可以出栈
                     stack.pop();
                 } else {  // 如果不配对，则入栈
-                    stack.add(c);
+                    stack.push(c);
                 }
             }
         }
